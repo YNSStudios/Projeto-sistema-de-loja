@@ -1,0 +1,16 @@
+[
+     {
+          "nome": "coca-cola zero",
+          "preço": 3.5,
+          "estoque": 120,
+          "classe": "Bebida",
+          "codigo": 8166
+     },
+     {
+          "nome": "biscoito treloso",
+          "preço": 1.75,
+          "estoque": 120,
+          "classe": "Docê",
+          "codigo": 6864
+     }
+]
