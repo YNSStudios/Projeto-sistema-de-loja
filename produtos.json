@@ -12,5 +12,12 @@
           "estoque": 120,
           "classe": "Docê",
           "codigo": 6864
+     }, 
+     {
+          "nome": "coca-cola",
+          "preço": 3.00,
+          "estoque": 120,
+          "classe": "Bebida",
+          "codigo": 2673
      }
 ]

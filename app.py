@@ -159,7 +159,7 @@ while True:
 
             elif ediçao == "preço":
 
-                novo_preço = float(input("Digite o novo preço: ").replace(',', '.'))
+                novo_preço = float(input("Digite o novo preço: ").replace(",", "."))
                 produto_encontrado["preço"] = novo_preço
                 break
 
@@ -178,3 +178,47 @@ while True:
             print("\033[32mProduto editado com sucesso !\033[0m")
             print()
             break
+    elif escolha == 3:
+
+        print("\033[33mRemoção de produto\033[0m")
+        print()
+
+        for produto in produtos:
+            print("=====================")
+            print(f"Nome: {produto['nome']}")
+            print(f"Código: {produto['codigo']}")
+            print()
+
+        while True:
+
+            print("Digite o codigo do produto que deseja remover")
+            print()
+
+            while True:
+
+                remover = input("Digite aqui: ")
+                print()
+                if remover.isnumeric():
+                    remover = int(remover)
+                    break
+                else:
+                    print("\033[33mIsso não é um número !\033[0m")
+
+            produto_remoçao = None
+
+            for produto in produtos:
+                if produto["codigo"] == remover:
+                    produto_remoçao = produto
+                    break
+
+            if produto_remoçao is not None:
+                break
+            else:
+                print("\033[31mProduto não encontrado !\033[0m")
+
+        produtos.remove(produto_remoçao)
+
+        with open("produtos.json", "w", encoding="utf-8") as dados:
+            json.dump(produtos, dados, ensure_ascii=False, indent=5)
+
+        print("\033[32mProduto removido com sucesso !\033[0m")
