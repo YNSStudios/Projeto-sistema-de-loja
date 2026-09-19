@@ -16,6 +16,10 @@ print("[1] Criar produtos")
 print()
 print("[2] Editar produtos")
 print()
+print("[3] Remover produtos")
+print()
+print("[4] Visuzlizar produtos")
+print()
 
 while True:
     escolha = input("Digite aqui: ")
@@ -203,6 +207,7 @@ while True:
                     break
                 else:
                     print("\033[33mIsso não é um número !\033[0m")
+                    print()
 
             produto_remoçao = None
 
@@ -215,6 +220,7 @@ while True:
                 break
             else:
                 print("\033[31mProduto não encontrado !\033[0m")
+                print()
 
         produtos.remove(produto_remoçao)
 
@@ -222,3 +228,25 @@ while True:
             json.dump(produtos, dados, ensure_ascii=False, indent=5)
 
         print("\033[32mProduto removido com sucesso !\033[0m")
+        print()
+        break
+
+    elif escolha == 4: 
+
+        print("\033[33mVizualizar produtos\033[0m ")
+        print()
+
+        for produto in produtos:
+
+            sleep(0.5)
+            print('==================')
+            sleep(0.5)
+            print(f"Nome: {produto['nome']}")
+            sleep(0.5)
+            print(f"Preço: {produto['preço']}")
+            sleep(0.5)
+            print(f"Estoque: {produto['estoque']}")
+            print()
+            sleep(0.5)
+
+        break
