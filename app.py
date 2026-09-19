@@ -62,8 +62,6 @@ if escolha == 1:
                 if produto["codigo"] == codigo:
                     codigo_encontrado = True
                     break
-                elif produtos is None:
-                    break
 
             if codigo_encontrado == None:
                 break
@@ -74,21 +72,18 @@ if escolha == 1:
         print()
 
         while True:
-            preço = input("Digite aqui: ").replace(",", ".")
+            preço = input("Digite o preço do produto: ").replace(",", ".")
             print()
 
-            if preço.isnumeric():
+            try:
                 preço = float(preço)
                 break
-
-            else:
+            
+            except ValueError:
                 print("\033[31mIsso não é um número !\033[0m")
 
-        print()
-        print()
-
         while True:
-            estoque = input("Digite aqui: ").replace(",", ".")
+            estoque = input("Digite a quantidade do estoque: ").replace(",", ".")
             print()
 
             if estoque.isnumeric():
