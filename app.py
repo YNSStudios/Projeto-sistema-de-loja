@@ -78,7 +78,7 @@ if escolha == 1:
             print()
 
             if preço.isnumeric():
-                preço = int(preço)
+                preço = float(preço)
                 break
 
             else:
