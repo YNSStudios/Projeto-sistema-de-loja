@@ -135,7 +135,7 @@ elif escolha == 2:
         while True:
 
             codigo_busca = input("Digite o codigo do produto: ")
-            print()
+            print() 
             if codigo_busca.isnumeric():
                 codigo_busca = int(codigo_busca)
                 break
