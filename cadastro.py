@@ -1,4 +1,5 @@
 import json
+from random import randint
 from time import sleep
 
 try:
@@ -14,20 +15,80 @@ try:
 except FileNotFoundError:
     produtos = []
 
+
+def verificação_de_numeros():
+
+    while True:
+
+        valor = input("\033[33mdigite aqui: \033[0m")
+
+        try:
+
+            valor = float(valor)
+            return valor
+
+        except ValueError:
+
+            erro = "\033[31mValor inválido. \033[0m"
+            print(erro)
+
+
+def verificaçao_senha():
+
+    while True:
+
+        while True:
+
+            senha = input("Digite uma senha forte: ")
+            print()
+            com_senha = input("Comfirme a senha: ")
+
+            for verificar in senha:
+                tem_letra = any(verificar.isalpha())
+                tem_numero = any(verificar.isdigit())
+
+            if tem_letra and tem_numero == True:
+                break
+            else:
+                print("\033[31mEstá faltando uma letra ou número.\033[0m]")
+
+        if senha == com_senha:
+            print("Fassa uma senha forte com letras e números e caracteres especiais.")
+            if len(senha) >= 8:
+                if senha in [
+                    "!",
+                    "@",
+                    "#",
+                    "$",
+                    "%",
+                    "¨",
+                    "&",
+                    "*", 
+                    "°",
+                    "º",
+                    "ª",
+                    "£",
+                    "¢",
+                    "§",
+                ]:
+                    print("\033[32mSenha for te criada com sucesso.\033[0m")
+                    print()
+
+                    
+
+                    return senha
+
+                else:
+                    print("Adicione um carácter especial. ")
+            else:
+                print("Asenha deve ter no minimo 8 caracteres. ")
+
+
 print("[1] Login")
 print("[2] Cadastrar")
 print()
 
-while True:
-    escolha = input("O que vai fazer: ")
-    print()
-
-    try:
-        escolha = int(escolha)
-        break
-    except ValueError:
-        print("Acho que algo deu errado :(. Tente novamente !")
-        print()
+escolha = int(verificação_de_numeros())
 
 if escolha == 1:
 
@@ -59,7 +120,9 @@ elif escolha == 2:
 
     while True:
 
-        print("\033[0mDigite um nome com mais de 8 caracteres, e com números, o nome não deve conter caracteres especiais. \033[0m")
+        print(
+            "\033[0mDigite um nome com mais de 8 caracteres, e com números, o nome não deve conter caracteres especiais. \033[0m"
+        )
         print()
 
         nome_usuario = input("Digite um nome de usuário válido: ")
@@ -84,3 +147,85 @@ elif escolha == 2:
         else:
             print("\033[31mDigite um nome com mais de 8 caracteres.\033[0m")
             print()
+
+    print("Digite sua idade. ")
+    idade = int(verificação_de_numeros())
+    print()
+
+    if idade >= 18:
+        status = "Adulto"
+    elif idade <= 17:
+        status = "Menor de idade"
+
+    senha = verificaçao_senha()
+
+    cidade = input("Digite o nome da sua cidade: ")
+    print()
+
+    endereço = input("Dgite o nome da sua rua e bairro: ")
+    print()
+
+    numero_da_casa = int(verificação_de_numeros())
+
+    while True:
+
+        cep = int(verificação_de_numeros())
+
+        if len(cep) == 8:
+            break
+        
+    if status == "Menor de idade":
+
+        nome_pai = input("Digite o nome do seu pai: ")
+        nome_mae = input("Digite o nome da sua mãe: ")
+
+        while True:
+
+            codigo = randint(10000, 99999)
+
+            semelhante = None
+
+            for usuario in clientes:
+                if usuario["codigo"] == codigo:
+                    semelhante = usuario
+                    break
+
+            if semelhante in None:
+                break
+
+    else:
+
+        nome_pai = None
+        nome_mae = None
+
+        while True:
+
+            codigo = randint(10000, 99999)
+
+            semelhante = None
+
+            for usuario in clientes:
+                if usuario["codigo"] == codigo:
+                    semelhante = usuario
+                    break
+
+            if semelhante in None:
+                break
+
+    clientes.append(
+        {
+            "nome": usuario,
+            "senha": senha,
+            "idade": idade,
+            "cidade": cidade,
+            "endereço": endereço,
+            "numemero da casa": numero_da_casa,
+            "cep": cep,
+            "nome_pai": nome_pai,
+            "nome_mae": nome_mae,
+            "Codigo": codigo,
+        }
+    )
+
+    with open("clientes.json", "w", encoding="utf-8") as dados:
+        json.dump(clientes, dados, ensure_ascii=False, indent=10)

@@ -1,3 +1,30 @@
 [
-     
+     {
+          "nome": "Coca-Cola",
+          "preço": 3.5,
+          "estoque": 120,
+          "classe": "Bebida",
+          "codigo": 9612
+     },
+     {
+          "nome": "Coca-Cola Zero",
+          "preço": 3.75,
+          "estoque": 120,
+          "classe": "Bebida",
+          "codigo": 3460
+     },
+     {
+          "nome": "Biscoito Treloso",
+          "preço": 1.5,
+          "estoque": 120,
+          "classe": "Comida",
+          "codigo": 8772
+     },
+     {
+          "nome": "Pão De Forma",
+          "preço": 9.25,
+          "estoque": 120,
+          "classe": "Comida",
+          "codigo": 2829
+     }
 ]

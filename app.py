@@ -9,6 +9,24 @@ try:
 except FileNotFoundError:
     produtos = []
 
+
+def verificação_de_numeros():
+
+    while True:
+
+        valor = input("\033[33mdigite aqui: \033[0m").replace(",", ".")
+
+        try:
+
+            valor = float(valor)
+            return valor
+
+        except ValueError:
+
+            erro = "\033[31mValor inválido. \033[0m"
+            print(erro)
+
+
 sleep(0.6)
 
 print("=================")
@@ -21,34 +39,18 @@ print()
 print("[4] Visuzlizar produtos")
 print()
 
-while True:
-    escolha = input("Digite aqui: ")
-    print()
-
-    if escolha.isnumeric():
-        escolha = int(escolha)
-        break
-
-    else:
-        print("\033[31mIsso não é um número !\033[0m")
-        print()
-
+escolha = int(verificação_de_numeros())
+print()
 
 if escolha == 1:
 
     print("\033[33mCriação de produtos !\033[0m")
     print()
 
-    while True:
+    print("Digite quantos produtos você ira cadastrar. ")
 
-        qtd_produtos = input("Digite quantos produtos você vai cadastrar: ")
-        print()
-        if qtd_produtos.isnumeric():
-            qtd_produtos = int(qtd_produtos)
-            break
-        else:
-            print("Isso não é um número !")
-            print()
+    qtd_produtos = int(verificação_de_numeros())
+    print()
 
     for c in range(qtd_produtos):
 
@@ -68,31 +70,15 @@ if escolha == 1:
 
         nome = input("Digite o nome do produto: ").title().strip()
         print()
-        print("Apenas números")
+        print("Apenas números. ")
         print()
 
-        while True:
-            preço = input("Digite o preço do produto: ").replace(",", ".")
-            print()
+        print("Digite o valor do produto. ")
+        preço = verificação_de_numeros()
+        print()
 
-            try:
-                preço = float(preço)
-                break
-            
-            except ValueError:
-                print("\033[31mIsso não é um número !\033[0m")
-
-        while True:
-            estoque = input("Digite a quantidade do estoque: ").replace(",", ".")
-            print()
-
-            if estoque.isnumeric():
-                estoque = int(estoque)
-                break
-
-            else:
-                print("\033[31mIsso não é um número !\033[0m")
-
+        print("Digite o estoque do produto. ")
+        estoque = int(verificação_de_numeros())
         print()
 
         classe = (
@@ -131,14 +117,9 @@ elif escolha == 2:
         sleep(0.5)
 
     while True:
-
-        while True:
-
-            codigo_busca = input("Digite o codigo do produto: ")
-            print() 
-            if codigo_busca.isnumeric():
-                codigo_busca = int(codigo_busca)
-                break
+        print("Digie o código do produto. ")
+        codigo_busca = verificação_de_numeros()
+        print()
 
         produto_encontrado = None
 
@@ -151,6 +132,8 @@ elif escolha == 2:
             print("\033[32mProduto encontrado !\033[0m")
             print()
             break
+        else:
+            print("\033[31mProduto não encontrado !\033[0m")
 
     print(f"Nome: {produto_encontrado['nome']}")
     print(f"Estoque: {produto_encontrado['estoque']}")
@@ -162,7 +145,7 @@ elif escolha == 2:
 
     while True:
 
-        ediçao = input("Digite aqui: ").lower()
+        ediçao = input("Digite aqui: ").lower().strip()
         print()
 
         if ediçao == "nome":
@@ -172,14 +155,14 @@ elif escolha == 2:
             break
 
         elif ediçao == "estoque":
-
-            novo_estoque = int(input("Digite o novo estoque"))
+            print("Digite o estoque do produto. ")
+            novo_estoque = int(verificação_de_numeros())
             produto_encontrado["estoque"] = novo_estoque
             break
 
         elif ediçao == "preço":
-
-            novo_preço = float(input("Digite o novo preço: ").replace(",", "."))
+            print("Digite o preço. ")
+            novo_preço = verificação_de_numeros()
             produto_encontrado["preço"] = novo_preço
             break
 
@@ -212,18 +195,8 @@ elif escolha == 3:
     while True:
 
         print("Digite o codigo do produto que deseja remover")
+        remover = int(verificação_de_numeros())
         print()
-
-        while True:
-
-            remover = input("Digite aqui: ")
-            print()
-            if remover.isnumeric():
-                remover = int(remover)
-                break
-            else:
-                print("\033[33mIsso não é um número !\033[0m")
-                print()
 
         produto_remoçao = None
 
@@ -258,7 +231,7 @@ elif escolha == 4:
         sleep(0.5)
         print(f"Nome: {produto['nome']}")
         sleep(0.5)
-        print(f"Preço: {produto['preço']}")
+        print(f"Preço: R${produto['preço']}")
         sleep(0.5)
         print(f"Estoque: {produto['estoque']}")
         print()
@@ -267,3 +240,4 @@ elif escolha == 4:
 
 else:
     print("\033[31mOpção inválida, tente novamente !\033[0m")
+    print()
